@@ -23,7 +23,7 @@ max_connections=2
 
 # set dengan ukuran 70% - 80% RAM yang tersedia
 innodb_buffer_pool_size = 2G
-innodb_log_buffer_size = 256M
+innodb_log_buffer_size = 1G
 
 # (innodb_log_file_size * 2) / innodb_buffer_pool_size = 25%
 innodb_log_file_size = 256M
