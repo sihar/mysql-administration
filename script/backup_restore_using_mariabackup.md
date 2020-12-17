@@ -1,10 +1,13 @@
 # Backup and Restore using Mariabackup
+  
 
 ## Backup
 Pastikan target directory ada, create folder jika belum ada
 ```
 $ sudo mkdir /var/mariadb/backup
 ```
+  
+    
 Backup database menggunakan mariabackup
 ```
 $ sudo mariabackup --backup --target-dir=/var/mariadb/backup/ --user=root --password=123456
@@ -19,8 +22,8 @@ $ sudo mariabackup --backup --target-dir=/var/mariadb/backup/ --user=root --pass
 mariabackup: Transaction log of lsn (305321776) to (305321776) was copied.
 201217 09:16:56 completed OK!  
 ```
-
-
+  
+  
 Prepare backup untuk restoration
 ```
 $ sudo mariabackup --prepare --target-dir=/var/mariadb/backup/
@@ -40,12 +43,13 @@ mariabackup: starting shutdown with innodb_fast_shutdown = 1
 2020-12-17  9:19:28 140297112471808 [Note] InnoDB: Shutdown completed; log sequence number 305322006
 201217 09:19:28 completed OK!
 ```
+    
   
-
 Copy target directory ke remote server
 ```
 $ scp -r /var/mariadb/backup/ remote-user@remote-ip-address:/remote-folder/
 ```
+  
 
 ## Restore
 Persiapan sebelum restore di server tujuan
@@ -56,6 +60,7 @@ $ sudo do mkdir mysql
 $ sudo chown -R mysql:mysql mysql
 ```
   
+
 Jalankan perintah mariabackup --copy-back dengan target directory sama dengan remote folder sewaktu menjalankan perintah scp sebelumnya
 ```
 $ sudo mariabackup --copy-back --target-dir=/path/target/directory
@@ -67,11 +72,14 @@ $ sudo mariabackup --copy-back --target-dir=/path/target/directory
 201217 08:55:37 [01]        ...done
 201217 08:55:37 completed OK!
 ```
+  
 
 Sesuaikan ownership folder /var/lib/mysql dan start service mysql
 ```
 $ sudo chown -R mysql:mysql /var/lib/mysql
 $ sudo systemctl start mariadb
 ```
+  
+  
 ### Referensi
 [mariadb.com](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
