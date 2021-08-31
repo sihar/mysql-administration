@@ -1,4 +1,4 @@
-# Backup with shell script
+# Backup scheduling
 
 create .my.cnf in your home folder
 ```
